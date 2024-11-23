@@ -1,120 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Interface Immersive</title>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;500&display=swap">
-    <style>
-        /* Styles Synthwave */
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #240046, #3f37c9, #00bbf9, #90e0ef);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        #app {
-            text-align: center;
-            max-width: 1200px;
-            padding: 20px;
-        }
-
-        h1, h2 {
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        button {
-            font-family: 'Roboto', sans-serif;
-            font-size: 1.2rem;
-            padding: 15px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            color: #fff;
-            background: linear-gradient(135deg, #6c63ff, #1e90ff);
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: linear-gradient(135deg, #5b5adb, #187bd6);
-            transform: scale(1.05);
-        }
-
-        input, select, output {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-group {
-            margin: 15px 0;
-            text-align: left;
-        }
-
-        .form-group label {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        /* Routine Matinale */
-        .routine {
-            text-align: left;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-        }
-
-        .routine h3 {
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .routine ul {
-            padding-left: 20px;
-            list-style: none;
-        }
-
-        .routine ul li {
-            margin: 5px 0;
-            font-size: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/immersive.css">
+    <link rel="stylesheet" href="./css/morning-routine.css">
 </head>
 
 <body>
@@ -202,55 +95,8 @@
         </div>
     </div>
 
-    <script>
-        function showScreen(screenId) {
-            document.querySelectorAll(".section").forEach(section => section.classList.remove("active"));
-            const screen = document.getElementById(screenId);
-            if (screen) screen.classList.add("active");
-        }
-
-        function backToMenu() {
-            document.querySelectorAll(".section").forEach(section => section.classList.remove("active"));
-        }
-
-        function calculateDEJ() {
-            const weight = parseFloat(document.getElementById("weight").value);
-            const height = parseFloat(document.getElementById("height").value);
-            const age = parseInt(document.getElementById("age").value);
-            const activityLevel = parseFloat(document.getElementById("activity-level").value);
-
-            if (isNaN(weight) || isNaN(height) || isNaN(age) || isNaN(activityLevel)) {
-                alert("Veuillez remplir tous les champs correctement.");
-                return;
-            }
-
-            const dej = Math.round((10 * weight + 6.25 * height - 5 * age + 5) * activityLevel);
-            document.getElementById("dej-result").textContent = `DEJ : ${dej} kcal`;
-        }
-
-        function updateSavingsRate(value) {
-            document.getElementById("savings-output").textContent = `Taux d'épargne : ${value}%`;
-        }
-
-        function calculateFinances() {
-            const income = parseFloat(document.getElementById("income").value);
-            const expenses = parseFloat(document.getElementById("expenses").value);
-            const savingsRate = parseInt(document.getElementById("savings-rate").value) / 100;
-
-            if (isNaN(income) || isNaN(expenses)) {
-                alert("Veuillez remplir les champs revenus et dépenses.");
-                return;
-            }
-
-            const savings = income * savingsRate - expenses;
-            const result = savings >= 0 ? `Vous épargnez ${savings} €.` : `Vous avez un déficit de ${Math.abs(savings)} €.`;
-            document.getElementById("finance-analysis").textContent = result;
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            backToMenu();
-        });
-    </script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/calculs.js"></script>
 </body>
 
 </html>
